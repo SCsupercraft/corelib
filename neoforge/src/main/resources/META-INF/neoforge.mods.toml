@@ -1,0 +1,38 @@
+modLoader = "javafml"
+loaderVersion = "[9,)"
+#issueTrackerURL = ""
+license = "CC0-1.0"
+
+[[mods]]
+modId = "corelib"
+version = "${version}"
+displayName = "CoreLib"
+authors = "SCsupercraft"
+description = '''
+A library mod for data handling.
+'''
+logoFile = "assets/corelib/icon.png"
+
+[[dependencies.corelib]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.8,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.corelib]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.8,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.corelib]]
+modId = "architectury"
+type = "required"
+versionRange = "[17.0.8,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[mixins]]
+config = "corelib.mixins.json"
