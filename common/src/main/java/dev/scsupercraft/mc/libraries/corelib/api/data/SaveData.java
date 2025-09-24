@@ -7,7 +7,6 @@ import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.JsonOps;
-import dev.scsupercraft.mc.libraries.corelib.CoreLib;
 import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecHolder;
 import net.minecraft.nbt.*;
 import org.jetbrains.annotations.ApiStatus;
@@ -63,12 +62,10 @@ public sealed class SaveData<T> implements Data<T> permits AutoSaveData, WorldSa
 			return;
 		}
 
-		try {
+		try (FileReader fileReader = new FileReader(file)) {
 			switch (type) {
 				case JSON -> {
-					FileReader fileReader = new FileReader(file);
 					JsonObject object = GSON.fromJson(fileReader, JsonObject.class);
-					fileReader.close();
 
 					DataResult<Pair<T, JsonElement>> result = codecHolder.codec().decode(JsonOps.INSTANCE, object.get("data"));
 					value = result.getOrThrow().getFirst();
@@ -100,16 +97,14 @@ public sealed class SaveData<T> implements Data<T> permits AutoSaveData, WorldSa
 			return;
 		}
 
-		try {
+		try (FileWriter fileWriter = new FileWriter(file)) {
 			switch (type) {
 				case JSON -> {
 					JsonObject object = new JsonObject();
 					JsonElement element = codecHolder.codec().encodeStart(JsonOps.INSTANCE, value).getOrThrow();
 					object.add("data", element);
 
-					FileWriter fileWriter = new FileWriter(file);
 					fileWriter.write(GSON.toJson(object));
-					fileWriter.close();
 				}
 				case NBT -> {
 					NbtCompound compound = new NbtCompound();

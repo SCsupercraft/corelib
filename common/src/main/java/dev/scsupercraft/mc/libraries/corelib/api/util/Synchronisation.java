@@ -10,6 +10,7 @@ import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.ApiStatus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +18,7 @@ import java.util.Map;
 /**
  * A utility class for synchronising data.
  */
+@ApiStatus.AvailableSince("1.0.0")
 public class Synchronisation {
 	private static final Map<Identifier, SyncedObject<?>> SYNCED_OBJECTS = new HashMap<>();
 
@@ -38,6 +40,7 @@ public class Synchronisation {
 	 * @param codecHolder The codec holder to use for serialisation.
 	 * @param <T>         The type of data being synchronised.
 	 */
+	@ApiStatus.AvailableSince("1.0.0")
 	public static <T> void setup(SyncedData<T> syncedData, CodecHolder<T> codecHolder) {
 		if (!SYNCED_OBJECTS.containsKey(syncedData.getSyncId())) SYNCED_OBJECTS.put(syncedData.getSyncId(), new SyncedObject<>(syncedData, codecHolder));
 	}
@@ -46,6 +49,7 @@ public class Synchronisation {
 	 * Synchronises the data to all clients.
 	 * @param syncedData The data to synchronise.
 	 */
+	@ApiStatus.AvailableSince("1.0.0")
 	public static void synchronise(SyncedData<?> syncedData) {
 		synchronise(SYNCED_OBJECTS.get(syncedData.getSyncId()));
 	}
@@ -55,6 +59,7 @@ public class Synchronisation {
 	 * @param syncedData The data to synchronise.
 	 * @param client     The client to send the data to.
 	 */
+	@ApiStatus.AvailableSince("1.0.0")
 	public static void synchronise(SyncedData<?> syncedData, ServerPlayerEntity client) {
 		synchronise(SYNCED_OBJECTS.get(syncedData.getSyncId()), client);
 	}
@@ -63,6 +68,7 @@ public class Synchronisation {
 	 * Synchronises all data to the specified client.
 	 * @param client The client to send the data to.
 	 */
+	@ApiStatus.AvailableSince("1.0.0")
 	public static void synchronise(ServerPlayerEntity client) {
 		SYNCED_OBJECTS.values().forEach(obj -> synchronise(obj, client));
 	}

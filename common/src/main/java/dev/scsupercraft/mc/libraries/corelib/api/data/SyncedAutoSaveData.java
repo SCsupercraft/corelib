@@ -1,16 +1,12 @@
 package dev.scsupercraft.mc.libraries.corelib.api.data;
 
-import dev.scsupercraft.mc.libraries.corelib.CoreLib;
 import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecHolder;
 import dev.scsupercraft.mc.libraries.corelib.api.util.Synchronisation;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Supplier;
 
 /**

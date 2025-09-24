@@ -25,7 +25,7 @@ public record CodecHolder<T>(Codec<T> codec, PacketCodec<ByteBuf, T> packetCodec
 	@SuppressWarnings("unchecked")
 	@ApiStatus.AvailableSince("1.0.0")
 	public static <T> CodecHolder<T> of(Codec<T> codec, PacketCodec<? extends ByteBuf, T> packetCodec) {
-		return new CodecHolder<T>(codec, (PacketCodec<ByteBuf, T>) packetCodec);
+		return new CodecHolder<>(codec, (PacketCodec<ByteBuf, T>) packetCodec);
 	}
 
 	/**

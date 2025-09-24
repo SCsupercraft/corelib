@@ -1,11 +1,9 @@
 package dev.scsupercraft.mc.libraries.corelib.api.serialization;
 
 import com.mojang.authlib.GameProfile;
-import io.netty.buffer.ByteBuf;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.text.Text;
