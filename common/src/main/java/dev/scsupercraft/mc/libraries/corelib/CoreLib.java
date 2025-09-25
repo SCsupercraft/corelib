@@ -23,16 +23,14 @@ public final class CoreLib {
 	 */
     public static @Nullable MinecraftServer server;
 
-    static {
-        SerialisationEventListener.init();
-    }
-
 	private CoreLib() {}
 
 	/**
 	 * Initializes CoreLib. Should only be called by CoreLib.
 	 */
     public static void init() {
+		SerialisationEventListener.init();
+
 		try { // Initialise classes
 			Class.forName("dev.scsupercraft.mc.libraries.corelib.api.util.Synchronisation");
 			Class.forName("dev.scsupercraft.mc.libraries.corelib.api.data.WorldSaveData");
