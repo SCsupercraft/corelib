@@ -1,13 +1,14 @@
 package dev.scsupercraft.mc.libraries.corelib.listener;
 
 import com.mojang.authlib.GameProfile;
+import dev.architectury.fluid.FluidStack;
 import dev.scsupercraft.mc.libraries.corelib.api.event.SerializationEvent;
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.*;
-import dev.scsupercraft.mc.libraries.corelib.serialization.resolver.basic.*;
-import dev.scsupercraft.mc.libraries.corelib.serialization.resolver.unique.EitherCodecResolver;
-import dev.scsupercraft.mc.libraries.corelib.serialization.resolver.unique.OptionalCodecResolver;
-import dev.scsupercraft.mc.libraries.corelib.serialization.resolver.unique.PairCodecResolver;
-import dev.scsupercraft.mc.libraries.corelib.serialization.resolver.unique.TagKeyCodecResolver;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.*;
+import dev.scsupercraft.mc.libraries.corelib.serialisation.resolver.basic.*;
+import dev.scsupercraft.mc.libraries.corelib.serialisation.resolver.unique.EitherCodecResolver;
+import dev.scsupercraft.mc.libraries.corelib.serialisation.resolver.unique.OptionalCodecResolver;
+import dev.scsupercraft.mc.libraries.corelib.serialisation.resolver.unique.PairCodecResolver;
+import dev.scsupercraft.mc.libraries.corelib.serialisation.resolver.unique.TagKeyCodecResolver;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -30,13 +31,13 @@ import java.util.function.Consumer;
 /**
  * An event listener used by CoreLib to register its own standard codecs and codec resolvers.
  */
-public final class SerializationEventListener {
+public final class SerialisationEventListener {
 	/**
 	 * Called by CoreLib to register its serialization event listeners.
 	 */
 	public static void init() {
-		SerializationEvent.REGISTER_STANDARD_CODEC_EVENT.register(SerializationEventListener::registerStandardCodecs);
-		SerializationEvent.REGISTER_CODEC_RESOLVER_EVENT.register(SerializationEventListener::registerCodecResolvers);
+		SerializationEvent.REGISTER_STANDARD_CODEC_EVENT.register(SerialisationEventListener::registerStandardCodecs);
+		SerializationEvent.REGISTER_CODEC_RESOLVER_EVENT.register(SerialisationEventListener::registerCodecResolvers);
 	}
 
 	private static void registerStandardCodecs(BiConsumer<Class<?>, CodecHolder<?>> registry) {
@@ -54,6 +55,7 @@ public final class SerializationEventListener {
 		registry.accept( OptionalLong.class, CodecHolders.OPTIONAL_LONG);
 		registry.accept(         UUID.class, CodecHolders.UUID);
 		registry.accept(    ItemStack.class, CodecHolders.ITEM_STACK);
+		registry.accept(   FluidStack.class, CodecHolders.FLUID_STACK);
 		registry.accept(     BlockPos.class, CodecHolders.BLOCK_POS);
 		registry.accept(    GlobalPos.class, CodecHolders.GLOBAL_POS);
 		registry.accept(  GameProfile.class, CodecHolders.GAME_PROFILE);
@@ -84,7 +86,7 @@ public final class SerializationEventListener {
 		registry.accept(new TagKeyCodecResolver());
 	}
 
-	private SerializationEventListener() {
+	private SerialisationEventListener() {
 
 	}
 }

@@ -4,7 +4,7 @@ import dev.architectury.event.events.common.PlayerEvent;
 import dev.architectury.networking.NetworkManager;
 import dev.scsupercraft.mc.libraries.corelib.CoreLib;
 import dev.scsupercraft.mc.libraries.corelib.api.data.SyncedData;
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecHolder;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHolder;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;

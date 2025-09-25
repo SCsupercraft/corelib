@@ -1,6 +1,6 @@
 package dev.scsupercraft.mc.libraries.corelib.api.data;
 
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecHolder;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHolder;
 import dev.scsupercraft.mc.libraries.corelib.api.util.Synchronisation;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.ApiStatus;

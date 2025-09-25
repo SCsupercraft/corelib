@@ -1,6 +1,6 @@
-package dev.scsupercraft.mc.libraries.corelib.serialization;
+package dev.scsupercraft.mc.libraries.corelib.serialisation;
 
-import dev.scsupercraft.mc.libraries.corelib.serialization.resolver.unique.TagKeyCodecResolver;
+import dev.scsupercraft.mc.libraries.corelib.serialisation.resolver.unique.TagKeyCodecResolver;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.*;

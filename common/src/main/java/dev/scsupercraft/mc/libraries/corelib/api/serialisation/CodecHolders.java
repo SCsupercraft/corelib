@@ -1,6 +1,7 @@
-package dev.scsupercraft.mc.libraries.corelib.api.serialization;
+package dev.scsupercraft.mc.libraries.corelib.api.serialisation;
 
 import com.mojang.authlib.GameProfile;
+import dev.architectury.fluid.FluidStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -83,6 +84,10 @@ public class CodecHolders {
 	/** A codec holder for {@link ItemStack} instances. */
 	@ApiStatus.AvailableSince("1.0.0")
 	public static final CodecHolder<ItemStack> ITEM_STACK = CodecHolder.of(ItemStack.CODEC, ItemStack.PACKET_CODEC);
+
+	/** A codec holder for {@link FluidStack} instances. */
+	@ApiStatus.AvailableSince("1.0.0")
+	public static final CodecHolder<FluidStack> FLUID_STACK = CodecHolder.of(FluidStack.CODEC, FluidStack.STREAM_CODEC);
 
 	/** A codec holder for {@link BlockPos} positions. */
 	@ApiStatus.AvailableSince("1.0.0")

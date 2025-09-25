@@ -1,6 +1,6 @@
 package dev.scsupercraft.mc.libraries.corelib.api.data;
 
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecHolder;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHolder;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 

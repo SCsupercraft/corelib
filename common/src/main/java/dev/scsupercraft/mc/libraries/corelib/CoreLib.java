@@ -1,7 +1,7 @@
 package dev.scsupercraft.mc.libraries.corelib;
 
 import com.mojang.logging.LogUtils;
-import dev.scsupercraft.mc.libraries.corelib.listener.SerializationEventListener;
+import dev.scsupercraft.mc.libraries.corelib.listener.SerialisationEventListener;
 import net.minecraft.server.MinecraftServer;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ public final class CoreLib {
     public static @Nullable MinecraftServer server;
 
     static {
-        SerializationEventListener.init();
+        SerialisationEventListener.init();
     }
 
 	private CoreLib() {}

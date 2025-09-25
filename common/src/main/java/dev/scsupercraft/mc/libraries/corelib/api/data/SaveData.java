@@ -7,7 +7,7 @@ import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.JsonOps;
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecHolder;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHolder;
 import net.minecraft.nbt.*;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;

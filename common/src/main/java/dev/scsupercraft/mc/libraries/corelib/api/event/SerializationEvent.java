@@ -2,10 +2,10 @@ package dev.scsupercraft.mc.libraries.corelib.api.event;
 
 import dev.architectury.event.Event;
 import dev.architectury.event.EventFactory;
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecHelper;
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecHolder;
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecResolver;
-import dev.scsupercraft.mc.libraries.corelib.serialization.resolver.basic.StandardCodecResolver;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHelper;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHolder;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecResolver;
+import dev.scsupercraft.mc.libraries.corelib.serialisation.resolver.basic.StandardCodecResolver;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.util.function.BiConsumer;

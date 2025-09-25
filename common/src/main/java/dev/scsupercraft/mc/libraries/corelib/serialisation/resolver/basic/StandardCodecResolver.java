@@ -1,10 +1,10 @@
-package dev.scsupercraft.mc.libraries.corelib.serialization.resolver.basic;
+package dev.scsupercraft.mc.libraries.corelib.serialisation.resolver.basic;
 
 import dev.scsupercraft.mc.libraries.corelib.api.event.SerializationEvent;
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecHolder;
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecResolver;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHolder;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecResolver;
 import dev.scsupercraft.mc.libraries.corelib.api.util.Utils;
-import dev.scsupercraft.mc.libraries.corelib.serialization.GenericClass;
+import dev.scsupercraft.mc.libraries.corelib.serialisation.GenericClass;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;

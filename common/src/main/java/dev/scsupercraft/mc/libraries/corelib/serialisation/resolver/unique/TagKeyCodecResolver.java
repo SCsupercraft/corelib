@@ -1,11 +1,11 @@
-package dev.scsupercraft.mc.libraries.corelib.serialization.resolver.unique;
+package dev.scsupercraft.mc.libraries.corelib.serialisation.resolver.unique;
 
 import dev.scsupercraft.mc.libraries.corelib.annotations.RegistryRef;
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecHolder;
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecHolders;
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecResolver;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHolder;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHolders;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecResolver;
 import dev.scsupercraft.mc.libraries.corelib.api.util.Utils;
-import dev.scsupercraft.mc.libraries.corelib.serialization.GenericClass;
+import dev.scsupercraft.mc.libraries.corelib.serialisation.GenericClass;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.tag.TagKey;

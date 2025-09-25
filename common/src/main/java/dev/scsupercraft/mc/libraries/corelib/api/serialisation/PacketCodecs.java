@@ -1,4 +1,4 @@
-package dev.scsupercraft.mc.libraries.corelib.api.serialization;
+package dev.scsupercraft.mc.libraries.corelib.api.serialisation;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.PacketCodec;

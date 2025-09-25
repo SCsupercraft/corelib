@@ -3,7 +3,7 @@ package dev.scsupercraft.mc.libraries.corelib.api.data;
 import dev.architectury.event.events.common.LifecycleEvent;
 import dev.scsupercraft.mc.libraries.corelib.CoreLib;
 import dev.scsupercraft.mc.libraries.corelib.api.event.WorldSaveDataEvent;
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecHolder;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHolder;
 import net.minecraft.server.MinecraftServer;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;

@@ -1,10 +1,10 @@
-package dev.scsupercraft.mc.libraries.corelib.api.serialization;
+package dev.scsupercraft.mc.libraries.corelib.api.serialisation;
 
 import dev.architectury.platform.Platform;
 import dev.scsupercraft.mc.libraries.corelib.CoreLib;
 import dev.scsupercraft.mc.libraries.corelib.api.event.SerializationEvent;
 import dev.scsupercraft.mc.libraries.corelib.api.util.Utils;
-import dev.scsupercraft.mc.libraries.corelib.serialization.GenericClass;
+import dev.scsupercraft.mc.libraries.corelib.serialisation.GenericClass;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.lang.reflect.Type;

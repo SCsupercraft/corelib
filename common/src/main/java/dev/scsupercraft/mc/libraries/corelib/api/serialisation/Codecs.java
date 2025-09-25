@@ -1,4 +1,4 @@
-package dev.scsupercraft.mc.libraries.corelib.api.serialization;
+package dev.scsupercraft.mc.libraries.corelib.api.serialisation;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.datafixers.util.Pair;

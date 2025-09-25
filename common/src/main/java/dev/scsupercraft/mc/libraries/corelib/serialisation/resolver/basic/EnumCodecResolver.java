@@ -1,10 +1,10 @@
-package dev.scsupercraft.mc.libraries.corelib.serialization.resolver.basic;
+package dev.scsupercraft.mc.libraries.corelib.serialisation.resolver.basic;
 
 import com.mojang.serialization.Codec;
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecHolder;
-import dev.scsupercraft.mc.libraries.corelib.api.serialization.CodecResolver;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHolder;
+import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecResolver;
 import dev.scsupercraft.mc.libraries.corelib.api.util.Utils;
-import dev.scsupercraft.mc.libraries.corelib.serialization.GenericClass;
+import dev.scsupercraft.mc.libraries.corelib.serialisation.GenericClass;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;

@@ -1,6 +1,6 @@
-package dev.scsupercraft.mc.libraries.corelib.api.serialization;
+package dev.scsupercraft.mc.libraries.corelib.api.serialisation;
 
-import dev.scsupercraft.mc.libraries.corelib.serialization.GenericClass;
+import dev.scsupercraft.mc.libraries.corelib.serialisation.GenericClass;
 import org.jetbrains.annotations.NotNull;
 
 /**

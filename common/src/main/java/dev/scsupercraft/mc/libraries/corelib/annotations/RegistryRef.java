@@ -1,6 +1,6 @@
 package dev.scsupercraft.mc.libraries.corelib.annotations;
 
-import dev.scsupercraft.mc.libraries.corelib.serialization.resolver.unique.TagKeyCodecResolver;
+import dev.scsupercraft.mc.libraries.corelib.serialisation.resolver.unique.TagKeyCodecResolver;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
