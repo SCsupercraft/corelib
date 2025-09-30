@@ -23,7 +23,7 @@ public final class OptionalCodecResolver implements CodecResolver {
 	@Override
 	public @NotNull <T> CodecHolder<T> resolveCodec(GenericClass<T> genericClass) {
 		CodecHolder<?> holder = CodecHelper.getCodec(genericClass.typeParameterIterator().next());
-		return Utils.cast(new CodecHolder<>(Codecs.optional(holder.codec()), Utils.cast(PacketCodecs.optional(holder.packetCodec()))));
+		return Utils.cast(CodecHolder.optional(holder));
 	}
 
 	/**

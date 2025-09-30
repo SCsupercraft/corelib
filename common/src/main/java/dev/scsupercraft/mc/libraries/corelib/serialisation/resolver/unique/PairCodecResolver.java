@@ -33,16 +33,15 @@ public final class PairCodecResolver implements CodecResolver {
 
 	@Override
 	public @NotNull <T> CodecHolder<T> resolveCodec(GenericClass<T> genericClass) {
-		Iterator<? extends GenericClass<?>> iterator = genericClass.typeParameterIterator();
-		CodecHolder<?> holderFirst = CodecHelper.getCodec(iterator.next());
-		CodecHolder<?> holderSecond = CodecHelper.getCodec(iterator.next());
-		Codec<Pair<?, ?>> codec = Utils.cast(Codec.pair(holderFirst.codec().fieldOf("first").codec(), holderSecond.codec().fieldOf("second").codec()));
-		PacketCodec<? extends ByteBuf, Pair<Object, Object>> packetCodec = pair(Utils.cast(holderFirst.packetCodec()), Utils.cast(holderSecond.packetCodec()));
+		return resolvePairCodec(genericClass);
+	}
 
-		CodecHolder<Pair<?, ?>> codecHolder = new CodecHolder<>(
-				codec,
-				Utils.cast(packetCodec)
-		);
+	public @NotNull <T, F, S> CodecHolder<T> resolvePairCodec(GenericClass<T> genericClass) {
+		Iterator<? extends GenericClass<?>> iterator = genericClass.typeParameterIterator();
+		CodecHolder<F> holderFirst = Utils.cast(CodecHelper.getCodec(iterator.next()));
+		CodecHolder<S> holderSecond = Utils.cast(CodecHelper.getCodec(iterator.next()));
+
+		CodecHolder<Pair<F, S>> codecHolder = CodecHolder.pair(holderFirst, holderSecond);
 		CodecHolder<?> codecHolder1 = codecHolder;
 
 		if (genericClass.clazz != Pair.class) {
@@ -67,18 +66,5 @@ public final class PairCodecResolver implements CodecResolver {
 	 */
 	public PairCodecResolver() {
 
-	}
-
-	static <B extends ByteBuf, F, S> PacketCodec<B, Pair<F, S>> pair(final PacketCodec<? super B, F> first, final PacketCodec<? super B, S> second) {
-		return new PacketCodec<>() {
-			public Pair<F, S> decode(B byteBuf) {
-				return new Pair<>(first.decode(byteBuf), second.decode(byteBuf));
-			}
-
-			public void encode(B byteBuf, Pair<F, S> pair) {
-				first.encode(byteBuf, pair.getFirst());
-				second.encode(byteBuf, pair.getSecond());
-			}
-		};
 	}
 }

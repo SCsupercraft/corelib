@@ -74,6 +74,9 @@ public final class SerialisationEventListener {
 		registry.accept(new ArrayCodecResolver());
 		registry.accept(new PrimitiveCodecResolver());
 		registry.accept(new StandardCodecResolver());
+		registry.accept(new ListCodecResolver());
+		registry.accept(new SetCodecResolver());
+		registry.accept(new MapCodecResolver());
 		registry.accept(new EnumCodecResolver());
 		registry.accept(new RecordCodecResolver());
 

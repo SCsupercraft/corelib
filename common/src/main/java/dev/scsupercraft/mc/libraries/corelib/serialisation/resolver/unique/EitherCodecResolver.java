@@ -27,10 +27,7 @@ public final class EitherCodecResolver implements CodecResolver {
 		CodecHolder<?> holderLeft = CodecHelper.getCodec(iterator.next());
 		CodecHolder<?> holderRight = CodecHelper.getCodec(iterator.next());
 
-		return Utils.cast(new CodecHolder<>(
-				new EitherCodec<>(holderLeft.codec(), holderRight.codec()),
-				Utils.cast(PacketCodecs.either(Utils.cast(holderLeft.packetCodec()), Utils.cast(holderRight.packetCodec())))
-		));
+		return Utils.cast(CodecHolder.either(holderLeft, holderRight));
 	}
 
 	/**
