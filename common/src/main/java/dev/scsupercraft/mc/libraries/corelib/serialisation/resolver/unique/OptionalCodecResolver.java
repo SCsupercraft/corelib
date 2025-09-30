@@ -5,8 +5,6 @@ import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHolder;
 import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecResolver;
 import dev.scsupercraft.mc.libraries.corelib.api.util.Utils;
 import dev.scsupercraft.mc.libraries.corelib.serialisation.GenericClass;
-import net.minecraft.network.codec.PacketCodecs;
-import net.minecraft.util.dynamic.Codecs;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;

@@ -1,14 +1,11 @@
 package dev.scsupercraft.mc.libraries.corelib.serialisation.resolver.unique;
 
 import com.mojang.datafixers.util.Pair;
-import com.mojang.serialization.Codec;
 import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHelper;
 import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHolder;
 import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecResolver;
 import dev.scsupercraft.mc.libraries.corelib.api.util.Utils;
 import dev.scsupercraft.mc.libraries.corelib.serialisation.GenericClass;
-import io.netty.buffer.ByteBuf;
-import net.minecraft.network.codec.PacketCodec;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
@@ -36,7 +33,7 @@ public final class PairCodecResolver implements CodecResolver {
 		return resolvePairCodec(genericClass);
 	}
 
-	public @NotNull <T, F, S> CodecHolder<T> resolvePairCodec(GenericClass<T> genericClass) {
+	private @NotNull <T, F, S> CodecHolder<T> resolvePairCodec(GenericClass<T> genericClass) {
 		Iterator<? extends GenericClass<?>> iterator = genericClass.typeParameterIterator();
 		CodecHolder<F> holderFirst = Utils.cast(CodecHelper.getCodec(iterator.next()));
 		CodecHolder<S> holderSecond = Utils.cast(CodecHelper.getCodec(iterator.next()));

@@ -13,9 +13,8 @@ import java.lang.reflect.Parameter;
 import java.util.*;
 
 /**
- * A codec resolver for lists.
+ * A codec resolver for {@link List}s.
  * Works for any class extending the {@link List} interface, as long as it declares a constructor that accepts a collection.
- * @see ArrayList#ArrayList(Collection)  ArrayList(Collection<? extends E>)
  */
 public final class ListCodecResolver implements CodecResolver {
 	@Override

@@ -1,13 +1,10 @@
 package dev.scsupercraft.mc.libraries.corelib.serialisation.resolver.basic;
 
-import com.mojang.serialization.Codec;
 import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHelper;
 import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHolder;
 import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecResolver;
 import dev.scsupercraft.mc.libraries.corelib.api.util.Utils;
 import dev.scsupercraft.mc.libraries.corelib.serialisation.GenericClass;
-import io.netty.buffer.ByteBuf;
-import net.minecraft.network.codec.PacketCodecs;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Constructor;
@@ -16,9 +13,8 @@ import java.lang.reflect.Parameter;
 import java.util.*;
 
 /**
- * A codec resolver for maps.
+ * A codec resolver for {@link Map}s.
  * Works for any class extending the {@link Map} interface, as long as it declares a constructor that accepts a map.
- * @see HashMap#HashMap(Map)  HashMap(Map<? extends K, ? extends V>)
  */
 public final class MapCodecResolver implements CodecResolver {
 	@Override

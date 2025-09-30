@@ -13,9 +13,8 @@ import java.lang.reflect.Parameter;
 import java.util.*;
 
 /**
- * A codec resolver for sets.
+ * A codec resolver for {@link Set}s.
  * Works for any class extending the {@link Set} interface, as long as it declares a constructor that accepts a collection.
- * @see HashSet#HashSet(Collection)  HashSet(Collection<? extends E>)
  */
 public final class SetCodecResolver implements CodecResolver {
 	@Override

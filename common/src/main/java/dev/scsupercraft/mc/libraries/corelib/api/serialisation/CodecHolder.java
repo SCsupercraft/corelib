@@ -15,7 +15,6 @@ import org.jetbrains.annotations.ApiStatus;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.IntFunction;
-import java.util.function.Supplier;
 
 /**
  * A record containing both a codec and a packet codec.
@@ -39,7 +38,7 @@ public record CodecHolder<T>(Codec<T> codec, PacketCodec<ByteBuf, T> packetCodec
 	}
 
 	/**
-	 *
+	 * Creates a new codec holder for an enum.
 	 * @param enumClass The class of the enum.
 	 * @return A new codec holder.
 	 * @param <T> The type of enum.
@@ -69,6 +68,7 @@ public record CodecHolder<T>(Codec<T> codec, PacketCodec<ByteBuf, T> packetCodec
 	 * @param codecHolder The codec holder for serialising collection elements.
 	 * @return A new codec holder.
 	 * @param <E> The type of element.
+	 * @param <C> The type of collection.
 	 */
 	@ApiStatus.AvailableSince("1.0.1")
 	public static <E, C extends Collection<E>> CodecHolder<C> collection(IntFunction<C> factory, CodecHolder<E> codecHolder) {
@@ -134,6 +134,7 @@ public record CodecHolder<T>(Codec<T> codec, PacketCodec<ByteBuf, T> packetCodec
 	 * @return A new codec holder.
 	 * @param <K> The type of key.
 	 * @param <V> The type of value.
+	 * @param <M> The type of map.
 	 */
 	@ApiStatus.AvailableSince("1.0.1")
 	public static <K, V, M extends Map<K, V>> CodecHolder<M> map(IntFunction<M> factory, CodecHolder<K> keyCodecHolder, CodecHolder<V> valueCodecHolder) {
