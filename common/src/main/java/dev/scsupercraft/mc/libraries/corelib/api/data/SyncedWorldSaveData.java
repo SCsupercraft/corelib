@@ -28,7 +28,7 @@ public final class SyncedWorldSaveData<T> extends WorldSaveData<T> implements Sy
 	 * @param codecHolder A codec holder for serializing the save data.
 	 * @param fileGetter A function that accepts the current server and returns the file that the data will be saved to.
 	 * @param type What should the data be saved as.
-	 * @param id The id of this synced object. Used to find the synced object on the client.
+	 * @param id The id of this synced data. Used to find the synced data on the client.
 	 */
 	@ApiStatus.AvailableSince("1.0.0")
 	public SyncedWorldSaveData(Supplier<@NotNull T> defaultValue, CodecHolder<T> codecHolder, Function<MinecraftServer, File> fileGetter, Type type, Identifier id) {

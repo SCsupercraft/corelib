@@ -23,7 +23,7 @@ public interface SyncedData<T> extends Data<T> {
 	/**
 	 * Set the data synced from the server.
 	 * Please don't use this, it should only be called by CoreLib during data synchronisation.
-	 * @param clientData The new data
+	 * @param clientData The new data.
 	 */
 	@ApiStatus.AvailableSince("1.0.0")
 	void setSyncedData(T clientData);

@@ -8,6 +8,7 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.JsonOps;
 import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHolder;
+import dev.scsupercraft.mc.libraries.corelib.api.util.Modifier;
 import net.minecraft.nbt.*;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
@@ -17,6 +18,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -44,7 +46,7 @@ public sealed class SaveData<T> implements Data<T> permits AutoSaveData, WorldSa
 	@ApiStatus.AvailableSince("1.0.0")
 	public SaveData(Supplier<@NotNull T> defaultValue, CodecHolder<T> codecHolder, Supplier<File> fileGetter, Type type) {
 		this.defaultValue = defaultValue;
-		this.value = defaultValue.get();
+		this.value = Objects.requireNonNull(defaultValue.get());
 		this.codecHolder = codecHolder;
 		this.fileGetter = fileGetter;
 		this.type = type;
@@ -54,7 +56,7 @@ public sealed class SaveData<T> implements Data<T> permits AutoSaveData, WorldSa
 	 * Loads the data from the disk.
 	 */
 	@ApiStatus.AvailableSince("1.0.0")
-	public void load() {
+	public synchronized void load() {
 		File file = fileGetter.get();
 		if (!file.exists()) {
 			value = defaultValue.get();
@@ -87,7 +89,7 @@ public sealed class SaveData<T> implements Data<T> permits AutoSaveData, WorldSa
 	 * Only saves if marked with {@link #markDirty()} or if the file doesn't already exist.
 	 */
 	@ApiStatus.AvailableSince("1.0.0")
-	public void save() {
+	public synchronized void save() {
 		File file = fileGetter.get();
 
 		if (!dirty && file.exists()) return;
@@ -133,7 +135,7 @@ public sealed class SaveData<T> implements Data<T> permits AutoSaveData, WorldSa
 	 */
 	@ApiStatus.AvailableSince("1.0.0")
 	@Override
-	public @NotNull T getData() {
+	public synchronized @NotNull T getData() {
 		return value;
 	}
 
@@ -144,8 +146,20 @@ public sealed class SaveData<T> implements Data<T> permits AutoSaveData, WorldSa
 	 */
 	@ApiStatus.AvailableSince("1.0.0")
 	@Override
-	public void setData(@NotNull T value) {
+	public synchronized void setData(@NotNull T value) {
 		this.value = Objects.requireNonNull(value);
+		markDirty();
+	}
+
+	/**
+	 * Modify the current data.
+	 * This calls {@link #markDirty()} for you.
+	 * @param modifier A function for modifying the data.
+	 */
+	@ApiStatus.AvailableSince("1.1.0")
+	@Override
+	public synchronized void modifyData(Modifier<T> modifier) {
+		value = Objects.requireNonNull(modifier.modify(value));
 		markDirty();
 	}
 

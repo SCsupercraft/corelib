@@ -1,5 +1,6 @@
 package dev.scsupercraft.mc.libraries.corelib.api.data;
 
+import dev.scsupercraft.mc.libraries.corelib.api.util.Modifier;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,4 +22,11 @@ public interface Data<T> {
 	 */
 	@ApiStatus.AvailableSince("1.0.0")
 	void setData(@NotNull T value);
+
+	/**
+	 * Modify the current data.
+	 * @param modifier A function for modifying the data.
+	 */
+	@ApiStatus.AvailableSince("1.1.0")
+	void modifyData(Modifier<T> modifier);
 }

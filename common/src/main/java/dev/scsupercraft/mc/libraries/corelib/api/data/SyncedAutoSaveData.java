@@ -26,7 +26,7 @@ public final class SyncedAutoSaveData<T> extends AutoSaveData<T> implements Sync
 	 * @param codecHolder A codec holder for serializing the save data.
 	 * @param fileGetter A supplier that returns the file that the data will be saved to.
 	 * @param type What should the data be saved as.
-	 * @param id The id of this synced object. Used to find the synced object on the client.
+	 * @param id The id of this synced data. Used to find the synced data on the client.
 	 */
 	@ApiStatus.AvailableSince("1.0.0")
 	public SyncedAutoSaveData(Supplier<@NotNull T> defaultValue, CodecHolder<T> codecHolder, Supplier<File> fileGetter, Type type, Identifier id) {
