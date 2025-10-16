@@ -18,6 +18,11 @@ import java.util.*;
  */
 public final class ListCodecResolver implements CodecResolver {
 	@Override
+	public int priority() {
+		return 100;
+	}
+
+	@Override
 	public boolean supportsValue(GenericClass<?> genericClass) {
 		return isList(genericClass.clazz) &&
 				(findConstructor(genericClass.clazz).isPresent() || genericClass.clazz.getTypeName().equals(List.class.getTypeName()));

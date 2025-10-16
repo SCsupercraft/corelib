@@ -18,6 +18,11 @@ import java.util.*;
  */
 public final class MapCodecResolver implements CodecResolver {
 	@Override
+	public int priority() {
+		return 100;
+	}
+
+	@Override
 	public boolean supportsValue(GenericClass<?> genericClass) {
 		return isMap(genericClass.clazz) &&
 				(findConstructor(genericClass.clazz).isPresent() || genericClass.clazz.getTypeName().equals(Map.class.getTypeName()));

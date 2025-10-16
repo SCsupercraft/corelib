@@ -14,6 +14,11 @@ import java.util.Map;
  * Asks the {@link StandardCodecResolver} for the codec to the boxed version of the primitive value.
  */
 public final class PrimitiveCodecResolver implements CodecResolver {
+	@Override
+	public int priority() {
+		return 101;
+	}
+
 	private static final Map<Class<?>, Class<?>> MAP = Map.of(
 			int.class, Integer.class,
 			long.class, Long.class,

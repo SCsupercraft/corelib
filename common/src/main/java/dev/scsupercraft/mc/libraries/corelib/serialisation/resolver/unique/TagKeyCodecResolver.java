@@ -32,8 +32,8 @@ public final class TagKeyCodecResolver implements CodecResolver {
 
 	@Override
 	public @NotNull <T> CodecHolder<T> resolveCodec(GenericClass<T> genericClass) {
-		if (genericClass.annotations == null || !genericClass.annotations.isAnnotationPresent(RegistryRef.class)) return Utils.cast(CodecHolders.TAG_KEY);
-		RegistryRef registryRef = genericClass.annotations.getAnnotation(RegistryRef.class);
+		RegistryRef registryRef = genericClass.annotations != null ? genericClass.annotations.getDeclaredAnnotation(RegistryRef.class) : null;
+		if (registryRef == null) return Utils.cast(CodecHolders.TAG_KEY);
 		RegistryKey<Registry<Object>> registryKey = RegistryKey.ofRegistry(Identifier.of(registryRef.namespace(), registryRef.value()));
 
 		return Utils.cast(new CodecHolder<>(

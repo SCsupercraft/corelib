@@ -10,7 +10,7 @@ public class DataPackRegistryEventImpl {
 	private DataPackRegistryEventImpl() {}
 
 	/**
-	 * The Fabric implementation of {@link DataPackRegistryEvent#onUpdatedListeners()}.
+	 * The Fabric implementation.
 	 */
 	public static void onUpdatedListeners() {
 		DataPackRegistryEvent.NEW_REGISTRY.invoker().addRegistries(CoreLibFabric.DATA_PACK_REGISTRAR);

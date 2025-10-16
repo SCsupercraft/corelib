@@ -16,6 +16,11 @@ import java.util.Map;
  * You can register your own standard codecs using {@link SerializationEvent.RegisterStandardCodecEvent}
  */
 public final class StandardCodecResolver implements CodecResolver {
+	@Override
+	public int priority() {
+		return 101;
+	}
+
 	private static final Map<Class<?>, CodecHolder<?>> STANDARD_CODECS = new HashMap<>();
 
 	static {

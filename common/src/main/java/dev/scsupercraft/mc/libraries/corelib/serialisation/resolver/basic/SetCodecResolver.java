@@ -18,6 +18,11 @@ import java.util.*;
  */
 public final class SetCodecResolver implements CodecResolver {
 	@Override
+	public int priority() {
+		return 100;
+	}
+
+	@Override
 	public boolean supportsValue(GenericClass<?> genericClass) {
 		return isSet(genericClass.clazz) &&
 				(findConstructor(genericClass.clazz).isPresent() || genericClass.clazz.getTypeName().equals(Set.class.getTypeName()));

@@ -11,6 +11,11 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class EnumCodecResolver implements CodecResolver {
 	@Override
+	public int priority() {
+		return 101;
+	}
+
+	@Override
 	public boolean supportsValue(GenericClass<?> genericClass) {
 		return genericClass.clazz.isEnum();
 	}

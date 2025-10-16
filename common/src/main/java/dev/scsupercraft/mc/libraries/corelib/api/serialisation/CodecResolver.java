@@ -8,6 +8,16 @@ import org.jetbrains.annotations.NotNull;
  */
 public interface CodecResolver {
 	/**
+	 * The priority of this codec resolver, higher numbers means that this resolver will be processed first.
+	 * <p>
+	 * Defaults to 1.
+	 * @return The priority of this codec resolver.
+	 */
+	default int priority() {
+		return 1;
+	}
+
+	/**
 	 * Is the generic class supported by this codec resolver?
 	 * @param genericClass The generic class.
 	 * @return Is the generic class supported?

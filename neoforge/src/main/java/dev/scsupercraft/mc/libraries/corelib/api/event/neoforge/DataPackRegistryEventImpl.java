@@ -10,7 +10,7 @@ public class DataPackRegistryEventImpl {
 	private DataPackRegistryEventImpl() {}
 
 	/**
-	 * The NeoForge implementation of {@link DataPackRegistryEvent#onUpdatedListeners()}.
+	 * The NeoForge implementation.
 	 */
 	public static void onUpdatedListeners() {
 

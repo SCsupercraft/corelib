@@ -1,5 +1,8 @@
 package dev.scsupercraft.mc.libraries.corelib.api.serialisation;
 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import dev.architectury.platform.Platform;
 import dev.scsupercraft.mc.libraries.corelib.CoreLib;
 import dev.scsupercraft.mc.libraries.corelib.api.event.SerializationEvent;
@@ -8,9 +11,7 @@ import dev.scsupercraft.mc.libraries.corelib.serialisation.GenericClass;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.lang.reflect.Type;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * A utility class for resolving codecs.
@@ -19,7 +20,8 @@ import java.util.Set;
  */
 @ApiStatus.AvailableSince("1.0.0")
 public final class CodecHelper {
-	private static final Set<CodecResolver> CODEC_RESOLVERS = new HashSet<>();
+	private static final Set<CodecResolver> CODEC_RESOLVERS = new LinkedHashSet<>();
+	private static final LoadingCache<GenericClass<?>, CodecHolder<?>> RESOLVED_CODECS = CacheBuilder.newBuilder().build(CacheLoader.from(CodecHelper::resolveCodec));
 
 	/**
 	 * Gets a codec for the provided class.
@@ -31,8 +33,7 @@ public final class CodecHelper {
 	 */
 	@ApiStatus.AvailableSince("1.0.0")
 	public static <T, U extends T> CodecHolder<U> getCodec(Class<T> tClass, Type... types) {
-		GenericClass<T> genericClass = new GenericClass<>(tClass, null, null, types);
-		return getCodec(genericClass);
+		return getCodec(new GenericClass<>(tClass, null, null, types));
 	}
 
 	/**
@@ -46,6 +47,11 @@ public final class CodecHelper {
 	 */
 	@ApiStatus.AvailableSince("1.0.0")
 	public static <T, U extends T> CodecHolder<U> getCodec(GenericClass<T> genericClass) {
+		if (Platform.isDevelopmentEnvironment()) CoreLib.LOGGER.info("Finding codec for class {}", genericClass);
+		return Utils.cast(RESOLVED_CODECS.getUnchecked(genericClass));
+	}
+
+	private static <T> CodecHolder<T> resolveCodec(GenericClass<T> genericClass) {
 		for (CodecResolver resolver : getResolvers()) {
 			if (resolver.supportsValue(genericClass)) {
 				if (Platform.isDevelopmentEnvironment()) CoreLib.LOGGER.info("Using {} to resolve codec for class {}", resolver.getClass().getSimpleName(), genericClass);
@@ -69,7 +75,14 @@ public final class CodecHelper {
 	 */
 	@ApiStatus.AvailableSince("1.0.0")
 	public static void refreshCodecResolvers() {
-		SerializationEvent.REGISTER_CODEC_RESOLVER_EVENT.invoker().register(CODEC_RESOLVERS::add);
+		synchronized (CODEC_RESOLVERS) {
+			Set<CodecResolver> unsorted = new HashSet<>();
+			SerializationEvent.REGISTER_CODEC_RESOLVER_EVENT.invoker().register(unsorted::add);
+			CODEC_RESOLVERS.clear();
+			unsorted.stream()
+					.sorted(Comparator.comparingInt(CodecResolver::priority).reversed())
+					.forEach(CODEC_RESOLVERS::add);
+		}
 	}
 
 	private CodecHelper() {

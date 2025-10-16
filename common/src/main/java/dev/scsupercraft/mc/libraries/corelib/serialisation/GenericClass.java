@@ -3,6 +3,7 @@ package dev.scsupercraft.mc.libraries.corelib.serialisation;
 import dev.scsupercraft.mc.libraries.corelib.serialisation.resolver.unique.TagKeyCodecResolver;
 import org.jetbrains.annotations.Nullable;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
 import java.util.*;
 import java.util.function.Function;
@@ -39,6 +40,10 @@ public class GenericClass<T> {
 	 * See {@link TagKeyCodecResolver} for an example of how it's used.
 	 */
 	public final @Nullable AnnotatedType annotations;
+	/**
+	 * The hash code of this generic class.
+	 */
+	private @Nullable Integer hash;
 
 	/**
 	 * Creates a generic class from an {@link AnnotatedType}.
@@ -228,7 +233,16 @@ public class GenericClass<T> {
 	}
 
 	@Override
+	public int hashCode() {
+		if (hash != null) return hash;
+		return hash = annotations != null && annotations.getDeclaredAnnotations().length != 0
+				? typeParameters.isEmpty() ? Objects.hash(clazz.getName(), array, annotations) : Objects.hash(clazz.getName(), typeParameters, array, annotations)
+				: typeParameters.isEmpty() ? Objects.hash(clazz.getName(), array) : Objects.hash(clazz.getName(), typeParameters, array);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
+		if (obj == this) return true;
 		if (!(obj instanceof GenericClass<?> other)) return super.equals(obj);
 		if (clazz != other.clazz || array != other.array) return false;
 		for (TypeVariable<Class<T>> typeVariable : typeParameters.keySet()) {
@@ -237,6 +251,8 @@ public class GenericClass<T> {
 
 			if (!genericClass.equals(genericClass1)) return false;
 		}
-		return true;
+		Annotation[] annotations1 = annotations != null ? annotations.getDeclaredAnnotations() : new Annotation[0];
+		Annotation[] annotations2 = other.annotations != null ? other.annotations.getDeclaredAnnotations() : new Annotation[0];
+		return Arrays.equals(annotations1, annotations2);
 	}
 }

@@ -9,9 +9,11 @@ import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecHolder;
 import dev.scsupercraft.mc.libraries.corelib.api.serialisation.CodecResolver;
 import dev.scsupercraft.mc.libraries.corelib.api.util.Utils;
 import dev.scsupercraft.mc.libraries.corelib.serialisation.GenericClass;
+import dev.scsupercraft.mc.libraries.corelib.serialisation.resolver.unique.TagKeyCodecResolver;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
+import net.minecraft.registry.tag.TagKey;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,8 +27,18 @@ import java.util.function.Function;
 /**
  * An advanced codec resolver that should work for all records,
  * as long as the {@link CodecHelper} can also resolve codecs for the record components.
+ * <p>
+ * Has a {@link #priority()} of 0, since this resolver is only a fallback if the record doesn't have its own resolver or a standard codec.
+ * <p>
+ * If we had a higher priority, this might resolve codecs for classes we don't want it to.
+ * For example, {@link TagKey}s, which are handled by the {@link TagKeyCodecResolver}, are records.
  */
 public final class RecordCodecResolver implements CodecResolver {
+	@Override
+	public int priority() {
+		return 0;
+	}
+
 	private static <T> Codec<T> buildRecordCodec(GenericClass<T> genericClass) {
 		Class<T> recordClass = genericClass.clazz;
 		RecordComponent[] recordComponents = recordClass.getRecordComponents();
